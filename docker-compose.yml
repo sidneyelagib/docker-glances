@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  monitoring:
+    image: nicolargo/glances:latest-full
+    restart: unless-stopped
+    ports: 
+      - "61208:61208"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - "GLANCES_OPT=-w"
+    # For nvidia GPUs
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          count: 1
+    #          capabilities: [gpu]
