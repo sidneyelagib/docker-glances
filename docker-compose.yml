@@ -11,10 +11,10 @@ services:
     environment:
       - "GLANCES_OPT=-w"
     # For nvidia GPUs
-    #deploy:
-    #  resources:
-    #    reservations:
-    #      devices:
-    #        - driver: nvidia
-    #          count: 1
-    #          capabilities: [gpu]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
