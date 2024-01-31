@@ -19,3 +19,9 @@ services:
             - driver: ${GPU_DRIVER}
               count: ${GPU_THREADS}
               capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fail http://localhost:61208 || exit 1"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
