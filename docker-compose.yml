@@ -6,16 +6,16 @@ services:
     container_name: glances
     restart: unless-stopped
     ports: 
-      - "61208:61208"
+      - "${HTTP_PORT}:61208"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - "GLANCES_OPT=-w"
+      - "GLANCES_OPT=${GLANCES_OPTS}"
     # For nvidia GPUs
     deploy:
       resources:
         reservations:
           devices:
-            - driver: nvidia
-              count: 1
+            - driver: ${GPU_DRIVER}
+              count: ${GPU_THREADS}
               capabilities: [gpu]
